@@ -1,0 +1,8 @@
+imports:
+    - { resource: config.yml }
+
+analytics:
+    tracking_method: manual
+    watch_groups:
+      - { name: 'Products', patterns: ['/product/view/\d*', '/product/list'] }
+      - { name: 'Cart', patterns: ['/cart/view/\d*', '/cart/purchase'] }

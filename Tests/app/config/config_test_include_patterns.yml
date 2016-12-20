@@ -1,0 +1,6 @@
+imports:
+    - { resource: config.yml }
+
+analytics:
+  exclude_patterns: []
+  only_patterns: ['/path/to/include/first', '/path/to/include/second', 'other/*']

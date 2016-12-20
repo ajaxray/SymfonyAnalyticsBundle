@@ -1,0 +1,12 @@
+framework:
+    secret: "So which of the favors of your Lord would you deny?"
+    test: ~
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+    templating:
+        engines: ['twig']
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"

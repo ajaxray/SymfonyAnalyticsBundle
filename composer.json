@@ -1,0 +1,30 @@
+{
+  "name"             : "ajaxray/SymfonyAnalyticsBundle",
+  "description"      : "Simple, native and configurable Analytics for Symfony2.8 and Symfony3.",
+  "minimum-stability": "stable",
+  "license"          : "MIT",
+  "keywords"         : ["web development", "webdev", "analytics", "visitor tracking", "symfony bundle", "symfony 2.8", "symfony3"],
+  "homepage"         : "http://github.com/ajaxray/SymfonyAnalyticsBundle",
+  "type"             : "symfony-bundle",
+  "authors"          : [
+    {
+      "name" : "Anis Uddin Ahmad",
+      "email": "anis.programmer@gmail.com"
+    }
+  ],
+  "require": {
+    "symfony/http-kernel": "~2.8",
+    "symfony/twig-bundle": "~2.8",
+    "symfony/console": "~2.8"
+  },
+  "autoload": {
+    "psr-4": {"Ajaxray\\SymfonyAnalyticsBundle\\": ""}
+  },
+  "require-dev": {
+    "symfony/framework-bundle": "~2.8",
+    "symfony/browser-kit": "~2.8",
+    "phpunit/phpunit": "~4.3",
+    "satooshi/php-coveralls": "dev-master",
+    "behat/behat": "^3.2"
+  }
+}

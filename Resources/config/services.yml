@@ -1,0 +1,10 @@
+services:
+#  ajaxray.symfony_analytics.auto_request_listener:
+#        class: Ajaxray\SymfonyAnalyticsBundle\EventListener\AutoRequestEventListener
+#        tags:
+#            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+
+  ajaxray.symfony_analytics.twig_extension:
+    class: Ajaxray\SymfonyAnalyticsBundle\Twig\AnalyticsExtension
+    tags:
+      - { name: twig.extension }

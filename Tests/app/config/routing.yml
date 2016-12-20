@@ -1,0 +1,7 @@
+home:
+  path: /
+  defaults: {_controller: SymfonyAnalyticsBundle:Default:index}
+
+manual:
+  path: /manual
+  defaults: {_controller: SymfonyAnalyticsBundle:Default:manualRequest}
