@@ -1,7 +1,7 @@
 <?php
 namespace Ajaxray\SymfonyAnalyticsBundle;
 
-use Ajaxray\SymfonyAnalyticsBundle\DependencyInjection\SymfonyAnalyticsExtension;
+use Ajaxray\SymfonyAnalyticsBundle\DependencyInjection\AjaxraySymfonyAnalyticsExtension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
@@ -14,6 +14,6 @@ class SymfonyAnalyticsBundle extends Bundle
 
     public function getContainerExtension()
     {
-        return new SymfonyAnalyticsExtension();
+        return new AjaxraySymfonyAnalyticsExtension();
     }
 }
