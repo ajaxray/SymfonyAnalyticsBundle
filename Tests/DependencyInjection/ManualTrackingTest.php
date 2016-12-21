@@ -21,12 +21,12 @@ class ManualTrackingTest extends BundleTestCase {
 
 	public function testItLoadsTrackingMethod()
 	{
-        $this->assertEquals('manual', $this->container->getParameter('tracking_method'));
+        $this->assertEquals('manual', $this->container->getParameter('analytics.tracking_method'));
 	}
 
 	public function testManualTrackingServiceRegistered()
 	{
-		$service = $this->container->get('ajaxray.symfony_analytics.manual_request_listener');
+		$service = $this->container->get('symfony_analytics.manual_request_listener');
 
 		$this->assertNotNull($service);
 		$this->assertTrue(is_a($service, ManualRequestEventListener::class));

@@ -19,13 +19,13 @@ class AutoTrackingTest extends BundleTestCase {
 	public function testDefaultTrackingMethodIsAuto()
 	{
 		$this->bootKernelWithEnv('test');
-        $this->assertEquals('auto', $this->container->getParameter('tracking_method'));
+        $this->assertEquals('auto', $this->container->getParameter('analytics.tracking_method'));
 	}
 
 	public function testAutoTrackingServiceRegistered()
 	{
 		$this->bootKernelWithEnv('test');
-		$service = $this->container->get('ajaxray.symfony_analytics.auto_request_listener');
+		$service = $this->container->get('symfony_analytics.auto_request_listener');
 
 		$this->assertNotNull($service);
 		$this->assertTrue(is_a($service, AutoRequestEventListener::class));

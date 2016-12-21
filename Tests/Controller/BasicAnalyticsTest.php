@@ -21,9 +21,14 @@ class BasicAnalyticsTest extends BundleTestCase {
 		$this->client = $this->container->get('test.client');
 	}
 
+	protected function tearDown() {
+		parent::tearDown();
+		$this->container->get('symfony_analytics.persistence')->clearData();
+	}
+
 	public function testItRunsSuccessfully()
 	{
 		$response = $this->client->request('GET', '/');
         $this->assertContains('Welcome to the native Analytics of Symfony!', $response->html());
-     }
+	}
 }

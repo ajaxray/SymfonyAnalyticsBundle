@@ -12,13 +12,13 @@ class BasicConfigurationTest extends BundleTestCase {
 	public function testItLoadsTrackingMethod()
 	{
 		$this->bootKernelWithEnv('test_manual_tracking');
-        $this->assertEquals('manual', $this->container->getParameter('tracking_method'));
+        $this->assertEquals('manual', $this->container->getParameter('analytics.tracking_method'));
 	}
 
 	public function testItLoadsExcludePatterns()
 	{
 		$this->bootKernelWithEnv('test');
-		$patterns = $this->container->getParameter('exclude_patterns');
+		$patterns = $this->container->getParameter('analytics.exclude_patterns');
 
 		$this->assertTrue(is_array($patterns));
 		$this->assertEquals(2, count($patterns));
@@ -27,7 +27,7 @@ class BasicConfigurationTest extends BundleTestCase {
 	public function testItLoadsOnlyPatterns()
 	{
 		$this->bootKernelWithEnv('test_include_patterns');
-		$patterns = $this->container->getParameter('only_patterns');
+		$patterns = $this->container->getParameter('analytics.only_patterns');
 
 		$this->assertTrue(is_array($patterns));
 		$this->assertEquals(3, count($patterns));
@@ -36,7 +36,7 @@ class BasicConfigurationTest extends BundleTestCase {
 	public function testItLoadsWatchGroupsAs2dArray()
 	{
 		$this->bootKernelWithEnv('test');
-		$patterns = $this->container->getParameter('watch_groups');
+		$patterns = $this->container->getParameter('analytics.watch_groups');
 
 		$this->assertTrue(is_array($patterns));
 		$this->assertEquals(2, count($patterns));

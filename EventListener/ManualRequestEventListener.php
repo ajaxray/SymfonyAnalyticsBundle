@@ -10,13 +10,17 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ManualRequestEventListener extends AbstractRequestEventListener {
 
+	function __construct($driver = null) {
+		$this->driver = $driver;
+	}
+
 	public function onRequest(RequestEvent $event)
 	{
 		$this->processRequest($event->getRequest());
 	}
 
 	protected function processRequest(Request $request) {
-		// @TODO : Save the request, no need to check filters
+		$this->driver->saveRequest($request);
 		self::$handled = true;
 	}
 }

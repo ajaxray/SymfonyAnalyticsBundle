@@ -9,6 +9,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  * This is the class that validates and merges configuration from your app/config files
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html#cookbook-bundles-extension-config-class}
+ * Also check http://symfony.com/doc/current/components/config/definition.html
  */
 class Configuration implements ConfigurationInterface
 {
@@ -31,6 +32,17 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('only_patterns')
 	                ->prototype('scalar')->end()
                 ->end()
+		        ->arrayNode('driver')
+	                ->addDefaultsIfNotSet()
+			        ->children()
+				        ->enumNode('type')
+				            ->values(array('dbal', 'redis'))
+	                        ->defaultValue('dbal')
+				        ->end()
+			            ->scalarNode('connection')->defaultValue('default_connection')->end()
+			            ->scalarNode('prefix')->defaultValue('analytics')->end()
+			        ->end()
+		        ->end()
 	            ->arrayNode('watch_groups')
 	                ->normalizeKeys(false)
 	                ->prototype('array')

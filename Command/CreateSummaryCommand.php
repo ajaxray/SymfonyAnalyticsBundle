@@ -13,7 +13,7 @@ class CreateSummaryCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('symfony_analytics:create_summary')
+            ->setName('analytics:create_summary')
             ->setDescription('Hello PhpStorm');
     }
 

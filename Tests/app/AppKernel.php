@@ -2,6 +2,7 @@
 namespace Ajaxray\SymfonyAnalyticsBundle\Tests\app;
 
 use Ajaxray\SymfonyAnalyticsBundle\SymfonyAnalyticsBundle;
+use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
@@ -25,6 +26,7 @@ class AppKernel extends Kernel
         return [
             new FrameworkBundle(),
             new TwigBundle(),
+            new DoctrineBundle(),
             new SymfonyAnalyticsBundle(),
         ];
     }
@@ -36,6 +38,7 @@ class AppKernel extends Kernel
      */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
+    	ini_set('html_errors', 0);
 	    $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
     }
 }

@@ -10,3 +10,11 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+
+doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                driver: "pdo_sqlite"
+                path: "%kernel.root_dir%/data/testdb.sqlite3"

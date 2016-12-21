@@ -13,6 +13,10 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 class AutoRequestEventListener extends AbstractRequestEventListener {
 
+	function __construct($driver) {
+		$this->driver = $driver;
+	}
+
 	public function onKernelController(FilterControllerEvent $event)
 	{
 		// $controller = $event->getController();
@@ -23,8 +27,9 @@ class AutoRequestEventListener extends AbstractRequestEventListener {
 		}
 	}
 
-	protected function processRequest(Request $request) {
-		// @TODO : Save the request if not configured to exclude
+	protected function processRequest(Request $request)
+	{
+		$this->driver->saveRequest($request);
 		self::$handled = true;
 	}
 }

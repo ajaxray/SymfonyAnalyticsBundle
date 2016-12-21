@@ -17,5 +17,11 @@ abstract class AbstractRequestEventListener {
 	 */
 	static public $handled = false;
 
+	/**
+	 * Persistence driver.
+	 * @var mixed
+	 */
+	protected $driver;
+
 	abstract protected function processRequest(Request $request);
 }

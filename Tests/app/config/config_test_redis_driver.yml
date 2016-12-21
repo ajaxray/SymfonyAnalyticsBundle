@@ -1,0 +1,8 @@
+imports:
+    - { resource: config.yml }
+
+analytics:
+    driver:
+        type: redis
+        connection: default
+        prefix: visitor_tracking
