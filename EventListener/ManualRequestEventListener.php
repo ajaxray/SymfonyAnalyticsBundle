@@ -3,6 +3,7 @@ namespace Ajaxray\SymfonyAnalyticsBundle\EventListener;
 
 use Ajaxray\SymfonyAnalyticsBundle\Event\RequestEvent;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 /**
  * @author   Anis Ahmad <anis.programmer@gmail.com>
@@ -16,10 +17,12 @@ class ManualRequestEventListener extends AbstractRequestEventListener {
 
 	public function onRequest(RequestEvent $event)
 	{
-		$this->processRequest($event->getRequest());
+		$request = $event->getRequest();
+		$this->processRequest($request);
 	}
 
-	protected function processRequest(Request $request) {
+	protected function processRequest(Request $request)
+	{
 		$this->driver->saveRequest($request);
 		self::$handled = true;
 	}

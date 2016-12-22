@@ -62,7 +62,7 @@ class AjaxraySymfonyAnalyticsExtension extends Extension
 	private function _registerPersistenceService($driver, ContainerBuilder $container) {
 		switch ($driver['type']) {
 			case 'dbal':
-				$driverService = new Reference('doctrine.dbal.'. $driver['connection']);
+				$driverService = new Reference('doctrine.dbal.'. $driver['connection']. '_connection');
 				$service = new Definition(DbalDriver::class, [$driverService , $driver['prefix']]);
 				$container->setDefinition('symfony_analytics.persistence', $service);
 				break;

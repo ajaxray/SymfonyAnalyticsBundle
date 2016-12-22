@@ -34,6 +34,8 @@ class ManualTrackingTest extends BundleTestCase {
 
 	public function testManualTrackingCanBeFiredManually()
 	{
+		$this->container->get('symfony_analytics.persistence')->prepare();
+
 		$this->assertFalse(ManualRequestEventListener::$handled, 'Wasn\'t Handled dispatching event');
 		$requestEvent = new RequestEvent(Request::create('/'));
 		$this->container->get('event_dispatcher')
@@ -43,6 +45,7 @@ class ManualTrackingTest extends BundleTestCase {
 
 	public function testManualTrackingServiceCalledOnRequest()
 	{
+		$this->container->get('symfony_analytics.persistence')->prepare();
 		$client = $this->container->get('test.client');
 
 		$this->assertFalse(ManualRequestEventListener::$handled, 'Wasn\'t Handled before request');
@@ -50,6 +53,9 @@ class ManualTrackingTest extends BundleTestCase {
 		$this->assertFalse(ManualRequestEventListener::$handled, 'Wasn\'t Handled if controller don\'t dispatch event manually');
 		$client->request('GET', '/manual');
 		$this->assertTrue(ManualRequestEventListener::$handled, 'Handled during request (with manual dispatch) processing');
+
+		// Clear logged data
+		$this->container->get('symfony_analytics.persistence')->clearData();
 	}
 
 }

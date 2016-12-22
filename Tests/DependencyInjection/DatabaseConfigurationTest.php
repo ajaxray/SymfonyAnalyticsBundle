@@ -11,13 +11,13 @@ class DatabaseConfigurationTest extends BundleTestCase {
 
 	public function testItLoadsDefaultDriverIfNotSetConfig()
 	{
-		$this->bootKernelWithEnv('test');
+		$this->bootKernelWithEnv('prod');
 		$driver = $this->container->getParameter('analytics.driver');
 
 		$this->assertTrue(is_array($driver));
 		$this->assertEquals('dbal', $driver['type']);
-		$this->assertEquals('default_connection', $driver['connection']);
-		$this->assertEquals('analytics', $driver['prefix']);
+		$this->assertEquals('default', $driver['connection']);
+		$this->assertEquals('analytics_', $driver['prefix']);
 	}
 
 	public function testDriverInfoCanBeChanged()

@@ -35,10 +35,14 @@ class AutoTrackingTest extends BundleTestCase {
 	{
 		$this->bootKernelWithEnv('test');
 		$client = $this->container->get('test.client');
+		$this->container->get('symfony_analytics.persistence')->prepare();
 
 		$this->assertFalse(AutoRequestEventListener::$handled, 'Wasn\'t Handled before request');
-		$content = $client->request('GET', '/');
+		$client->request('GET', '/');
 		$this->assertTrue(AutoRequestEventListener::$handled, 'Handled during request processing');
+
+		// Clear logged data
+		$this->container->get('symfony_analytics.persistence')->clearData();
 	}
 
 }

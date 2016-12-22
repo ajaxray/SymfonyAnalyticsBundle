@@ -15,3 +15,13 @@ Simple, native and configurable Analytics for Symfony2.8 and Symfony3 that under
 * How to filter url (routes)
 * How to manage watch groups
 * How to use different database
+
+### Next Task
+
+* Basic request logging with DBAL
+    * Test DBAL Driver
+    * Add Route Filtering and Test
+    * Add behat tests to check filtering
+* Relating requests to Watch-group
+* Add basic reporting 
+* Start working with Redis Driver

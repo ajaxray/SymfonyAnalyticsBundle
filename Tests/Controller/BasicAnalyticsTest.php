@@ -19,11 +19,7 @@ class BasicAnalyticsTest extends BundleTestCase {
 	{
 		$this->bootKernelWithEnv('test');
 		$this->client = $this->container->get('test.client');
-	}
-
-	protected function tearDown() {
-		parent::tearDown();
-		$this->container->get('symfony_analytics.persistence')->clearData();
+		$this->container->get('symfony_analytics.persistence')->prepare();
 	}
 
 	public function testItRunsSuccessfully()

@@ -17,4 +17,7 @@ doctrine:
         connections:
             default:
                 driver: "pdo_sqlite"
-                path: "%kernel.root_dir%/data/testdb.sqlite3"
+                path: "%kernel.root_dir%/data/prod.sqlite3"
+            test:
+                driver: "pdo_sqlite"
+                path: "%kernel.root_dir%/data/test.sqlite3"

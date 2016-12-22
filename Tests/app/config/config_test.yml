@@ -2,6 +2,9 @@ imports:
     - { resource: config.yml }
 
 analytics:
+    driver:
+        type: dbal
+        connection: test
     exclude_patterns: ['/path/to/ignore/first', '/path/to/ignore/second']
     watch_groups:
       - { name: 'Products', patterns: ['/product/view/\d*', '/product/list'] }

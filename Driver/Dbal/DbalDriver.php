@@ -11,6 +11,12 @@ use Ajaxray\SymfonyAnalyticsBundle\Driver\AbstractDriver;
 use Doctrine\DBAL\Driver\Connection;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * DBAL Driver for SymfonyAnalyticsBundle
+ *
+ *
+ * @package Ajaxray\SymfonyAnalyticsBundle\Driver\Dbal
+ */
 class DbalDriver extends AbstractDriver {
 
 	/**
@@ -30,24 +36,58 @@ class DbalDriver extends AbstractDriver {
 	/**
 	 * DBALDriver constructor.
 	 *
-	 * @param $connection Connection connection name. Default "default"
+	 * @param $connection Connection from Doctrine DBAL.
 	 * @param string $prefix
 	 */
-
 	public function __construct($connection, $prefix) {
 		$this->connection = $connection;
+		$this->prefix = $prefix;
 
-		$this->tables['requests'] = $prefix . '_requests';
+		$this->tables['requests'] = $prefix . 'requests';
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function isPrepared() {
-		// TODO: Implement isPrepared() method.
+		$sm = $this->connection->getSchemaManager();
+		$allTables = array_map(function($table) {
+			return $table->getName();
+		}, $sm->listTables());
+
+		return (0 === count(array_diff($this->tables, $allTables)));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function prepare() {
-		// TODO: Implement prepare() method.
+		$prepareSql = file_get_contents(__DIR__. '/data/prepare.sql');
+		$prepareSql = str_replace('__PREFIX__', $this->prefix, $prepareSql);
+
+		$this->connection->beginTransaction();
+		try {
+			$this->connection->query($prepareSql);
+			$this->connection->commit();
+		} catch (\Exception $e) {
+			$this->connection->rollBack();
+			throw new \RuntimeException('Preparing analytics table failed: '. $e->getMessage(), $e->getCode());
+		}
+
+//		$sm = $this->connection->getSchemaManager();
+//		$tables = $sm->listTables();
+//		foreach ($tables as $table) {
+//			echo $table->getName() . " columns:\n\n";
+//			foreach ($table->getColumns() as $column) {
+//				echo ' - ' . $column->getName() . "\n";
+//			}
+//		}
+//		die( 'Died in ' . __FILE__ . ' at line ' . __LINE__ );
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function saveRequest(Request $request) {
 
 		$this->connection->insert($this->tables['requests'], [
@@ -62,6 +102,9 @@ class DbalDriver extends AbstractDriver {
 		]);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function clearData() {
 		$this->connection->beginTransaction();
 		foreach ($this->tables as $table) {
@@ -70,6 +113,9 @@ class DbalDriver extends AbstractDriver {
 		$this->connection->commit();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function clearAll()
 	{
 		$this->connection->beginTransaction();
