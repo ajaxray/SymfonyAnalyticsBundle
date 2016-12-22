@@ -2,7 +2,7 @@ SymfonyAnalyticsBundle
 ==========================
 
 [![Build Status](https://travis-ci.org/ajaxray/SymfonyAnalyticsBundle.svg?branch=master)](https://travis-ci.org/ajaxray/SymfonyAnalyticsBundle)
-
+[![Coverage Status](https://coveralls.io/repos/github/ajaxray/SymfonyAnalyticsBundle/badge.svg?branch=master)](https://coveralls.io/github/ajaxray/SymfonyAnalyticsBundle?branch=master)
 
 Simple, native and configurable Analytics for Symfony2.8 and Symfony3 that understands the language of Symfony.  
 
@@ -19,7 +19,6 @@ Simple, native and configurable Analytics for Symfony2.8 and Symfony3 that under
 ### Next Task
 
 * Basic request logging with DBAL
-    * Test DBAL Driver
     * Add Route Filtering and Test
     * Add behat tests to check filtering
 * Relating requests to Watch-group
